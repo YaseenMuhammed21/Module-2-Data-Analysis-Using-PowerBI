@@ -46,10 +46,9 @@ Created new tables 'Country Table', 'Date Table', 'Products Table', 'Sales By Co
 
 ### Visualization
 
-1. Created the visual for Performance By Person to get the visualization of individual Sale Person
-2. Created the visual to study Market across the world
-3. Created the visual to study the Shipment scenario across the sale
-4. Created the visual for market drill down to know the area to increase the sale
+1. Created the visual to study the sales across the country
+2. Created the visual to study the Day by Day sale
+3. Created the visual to study the sale of products
 5. Created the Summary for the project
 
 ## We have used Stacked Bar Chart, Clustered Column Chart, Card, Slicer, Map, Line and Clustered Column Chart, Tree Map, Matrix, Scatter Chart and Gauge Chart
