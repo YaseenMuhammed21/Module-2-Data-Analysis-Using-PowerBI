@@ -32,18 +32,26 @@ Created new tables 'Country Table', 'Date Table', 'Products Table', 'Sales By Co
 ##
     Products Table = DISTINCT(financials[Product])
 
+#### Segment Table
+##
+    Segment Table = (DISTINCT(financials[Segment]))
+
 #### Sales By Country
 ##
     Sales By Country = SUMMARIZE('Country Table','Country Table'[Country],"Total Sales",SUM(financials[Sales]),"Total Profit", SUM(financials[Profit]),"Unit Sold",SUM(financials[Units Sold]))
 
 #### Sales By Date
 ##
-    SalesByDate = SUMMARIZE('Date Table','Date Table'[Date],"Total Sales",SUM(financials[Sales]),"Total Profit", SUM(financials[Profit]),"Unit Sold",SUM(financials[Units Sold]))
+    Sales By Date = SUMMARIZE('Date Table','Date Table'[Date],"Total Sales",SUM(financials[Sales]),"Total Profit", SUM(financials[Profit]),"Unit Sold",SUM(financials[Units Sold]))
    
 #### Sales by Products
 ##
     Sales By Product = SUMMARIZE('Products Table','Products Table'[Product],"Total Sales",SUM(financials[Sales]),"Total Profit", SUM(financials[Profit]),"Unit Sold",SUM(financials[Units Sold]))
 
+#### Sales By Segment
+##
+    Sales By Segment = SUMMARIZE('Segment Table','Segment Table'[Segment],"Total Sales",SUM(financials[Sales]),"Total Profit", SUM(financials[Profit]),"Unit Sold",SUM(financials[Units Sold]))
+    
 ### Visualization
 
 1. Created the visual to study the sales across the country
