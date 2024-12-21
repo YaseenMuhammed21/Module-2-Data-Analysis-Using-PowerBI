@@ -1,12 +1,10 @@
-# 2-Data Visualization
+# Data Analysis Using Power BI
 
-## This assignment is about data transfoprmation and Visualization of a 'Global Superstore' using Power Query and Power BI
+## This assignment is about data transformation, visualization and analysis of a 'Financial Data of 'X'' using Power Query and Power BI
 
 ### Steps has been completed in the process.
 
-#### 3 Sheets has been found in the workbook named as Orders, People and Return.
-
-1. Loaded the 'Global Superstore' file into Power Query to transform and load into Power  BI for further process
+1. Loaded the 'Financials' file into Power Query to transform and load into Power  BI for further process
 
 2. Promoted the Headers
 
@@ -14,47 +12,37 @@
 
 4. Removed duplicates and blank rows
 
-5. Seperate the column using delimiter(Product Name)
+5. Removed the unwanted column('Manufacturing Price' column was incorrect in given data we have removed the same)
 
-6. Removed the unwanted column(Product Name has been seperated by delimiter and removed the newly created column)
-
-7. Reordered the column('Returned')
-
-8. Created the relationship between Given Table(Orders to People as Many to One with Single  
-Filter and Returns to Orders as One To One with Both Filter)
+7. Removed column('Month Number', 'Month Name' and Year)
 
 ### DAX Operations
 
-1. Created new table in correspondance with Orders table as "Profit Margin" with the column named as 'Profit Margin' and 'Profit Category'
-##
-    Profit Margin = ADDCOLUMNS(SELECTCOLUMNS(Orders,"Order",Orders[Order ID],"Sale",Orders[Sales],"Profit",Orders[Profit]),"Profit Margin",IF([Sale]<>0,([Profit]/[Sale])*100,0),"Profit Category",IF(IF([Sale]<>0,([Profit]/[Sale])*100,0)>=50,"Higher Profit","Lower Profit"))
+1. Created new tables 'Country Table', 'Date Table', 'Products Table', 'Sales By Country', 'Sales By Date', 'Sales By Products'
 
-2. Created new table to find the 'Profit' and 'Shipment cost' ratio as "Profit to Shipping Cost Ratio" with column named as 'Profit to Shipping Cost Ratio'
+### Country Table
 ##
-    Profit to Shipping Cost Ratio = ADDCOLUMNS(Orders,"Profit to Shipping Cost Ratio",IF(Orders[Shipping Cost]<>0,Orders[Profit]/Orders[Shipping Cost],0))
+  Country Table = (DISTINCT(financials[Country]))
 
-3. Created new table named as "Sales and Profit in Returned Items" to find the profit from the returned item where which the 'Orders' table and the 'Return' related One to One and 'Bi-Direction'
+### Date Table
 ##
-    Sales and Profit in Returned Items = SELECTCOLUMNS(Returns,"Order ID",Returns[Order ID],"Returned",Returns[Returned],"Sales",RELATED(Orders[Sales]),"Profit",RELATED(Orders[Profit]))
+   Date Table = (DISTINCT(financials[Date]))
 
-4. Added a column in Orders table as 'Rounded Profit'
+### Products Table
 ##
-    Rounded Profit = ROUND(DIVIDE(Orders[Profit], Orders[Sales]) * 100, 2)
+   Products Table = DISTINCT(financials[Product])
 
-5. Created the new measures for 'Total Sale'
+### Sales By Country
 ##
-    Total Sale = SUM(Orders[Sales])
-6. Created new table 'Sales Over Location'
-##
-    Sales Over Location = SELECTCOLUMNS(Orders,"order ID",Orders[Order ID],"Category",Orders[Category],"sales",Orders[Sales],"City",Orders[City],"Country",Orders[Country],"Region",Orders[Region],"Profit",Orders[Profit])
+   Sales By Country = SUMMARIZE('Country Table','Country Table'[Country],"Total Sales",SUM(financials[Sales]),"Total Profit", SUM(financials[Profit]))
 
-7. Created the column to find the difference between the 'Order Date' and the 'Ship Date'
+### Sales By Date
 ##
-    Shipment Duration = DATEDIFF(Orders[Order Date],Orders[Ship Date],DAY)
-
-8. Created the measures 'Profit Percentage'
+   SalesByDate = SUMMARIZE('Date Table','Date Table'[Date],"Total Sales",SUM(financials[Sales]),"Total Profit", SUM(financials[Profit]))
+   
+### Sales by Products
 ##
-    Profit Percentage = DIVIDE(SUM('Profit Margin'[Profit]),SUM('Profit Margin'[Sale]))*100
+   Sales By Product = SUMMARIZE('Products Table','Products Table'[Product],"Total Sales",SUM(financials[Sales]),"Total Profit", SUM(financials[Profit]))
 
 ### Visualization
 
@@ -66,6 +54,3 @@ Filter and Returns to Orders as One To One with Both Filter)
 
 ## We have used Stacked Bar Chart, Clustered Column Chart, Card, Slicer, Map, Line and Clustered Column Chart, Tree Map, Matrix, Scatter Chart and Gauge Chart
 
-### Please find the video for visualization
-##
-    https://drive.google.com/file/d/1sX0O_B_B5lljyR2BdZvjDTO3xGbEZ-XJ/view?usp=drive_link
