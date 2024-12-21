@@ -34,15 +34,15 @@ Created new tables 'Country Table', 'Date Table', 'Products Table', 'Sales By Co
 
 #### Sales By Country
 ##
-    Sales By Country = SUMMARIZE('Country Table','Country Table'[Country],"Total Sales",SUM(financials[Sales]),"Total Profit", SUM(financials[Profit]))
+    Sales By Country = SUMMARIZE('Country Table','Country Table'[Country],"Total Sales",SUM(financials[Sales]),"Total Profit", SUM(financials[Profit]),"Unit Sold",SUM(financials[Units Sold]))
 
 #### Sales By Date
 ##
-    SalesByDate = SUMMARIZE('Date Table','Date Table'[Date],"Total Sales",SUM(financials[Sales]),"Total Profit", SUM(financials[Profit]))
+    SalesByDate = SUMMARIZE('Date Table','Date Table'[Date],"Total Sales",SUM(financials[Sales]),"Total Profit", SUM(financials[Profit]),"Unit Sold",SUM(financials[Units Sold]))
    
 #### Sales by Products
 ##
-    Sales By Product = SUMMARIZE('Products Table','Products Table'[Product],"Total Sales",SUM(financials[Sales]),"Total Profit", SUM(financials[Profit]))
+    Sales By Product = SUMMARIZE('Products Table','Products Table'[Product],"Total Sales",SUM(financials[Sales]),"Total Profit", SUM(financials[Profit]),"Unit Sold",SUM(financials[Units Sold]))
 
 ### Visualization
 
