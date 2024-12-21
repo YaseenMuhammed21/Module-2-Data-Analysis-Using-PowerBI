@@ -51,12 +51,29 @@ Created new tables 'Country Table', 'Date Table', 'Products Table', 'Sales By Co
 #### Sales By Segment
 ##
     Sales By Segment = SUMMARIZE('Segment Table','Segment Table'[Segment],"Total Sales",SUM(financials[Sales]),"Total Profit", SUM(financials[Profit]),"Unit Sold",SUM(financials[Units Sold]))
+
+#### Best Region
+##
+    BestRegion = VAR MaxProfit = MAX('Sales By Country'[Total Profit])VAR BestCountry =CALCULATE(FIRSTNONBLANK('Sales By Country'[Country], 1),'Sales By Country'[Total Profit] = MaxProfit)RETURN BestCountry & " is the best region with the profit of " & FORMAT(MaxProfit, "Currency")
+
+#### Best Date
+##
+    BestDate = VAR MaxProfit = MAX('Sales By Date'[Total Profit])VAR BestDay =CALCULATE(FIRSTNONBLANK('Sales By Date'[Date], 1),'Sales By Date'[Total Profit] = MaxProfit)RETURN BestDay & " is the best day with the profit of " & FORMAT(MaxProfit, "Currency")
+
+#### Best Product
+##
+    BestProduct = VAR MaxProfit = MAX('Sales By Product'[Total Profit])VAR BestProduct =CALCULATE(FIRSTNONBLANK('Sales By Product'[Product], 1),'Sales By Product'[Total Profit] = MaxProfit)RETURN BestProduct & " is the best product with the profit of " & FORMAT(MaxProfit, "Currency")
+
+#### Best Segment
+##
+    BestSegment = VAR MaxProfit = MAX('Sales By Segment'[Total Profit])VAR BestSegment =CALCULATE(FIRSTNONBLANK('Sales By Segment'[Segment], 1),'Sales By Segment'[Total Profit] = MaxProfit)RETURN BestSegment & " is the best product with the profit of " & FORMAT(MaxProfit, "Currency")
     
 ### Visualization
 
 1. Created the visual to study the sales across the country
 2. Created the visual to study the Day by Day sale
 3. Created the visual to study the sale of products
+4. Created the Visuals to study the segment of product distribution
 5. Created the Summary for the project
 
 ## We have used Stacked Bar Chart, Clustered Column Chart, Card, Slicer, Map, Line and Clustered Column Chart, Tree Map, Matrix, Scatter Chart and Gauge Chart
